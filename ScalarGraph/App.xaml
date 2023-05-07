@@ -1,0 +1,22 @@
+﻿<Application x:Class="ScalarGraph.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ScalarGraph"
+             xmlns:viewModel="clr-namespace:ScalarGraph.MVVM.ViewModel"
+             xmlns:view="clr-namespace:ScalarGraph.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/ButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:GraphViewModel}">
+                <view:GraphView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ProfileViewModel}">
+                <view:ProfileView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

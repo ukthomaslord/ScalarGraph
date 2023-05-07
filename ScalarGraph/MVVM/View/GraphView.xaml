@@ -1,0 +1,47 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ScalarGraph.MVVM.View"
+             xmlns:oxy="http://oxyplot.org/wpf" 
+             x:Class="ScalarGraph.MVVM.View.GraphView"
+             mc:Ignorable="d"
+             xmlns:viewModels="clr-namespace:ScalarGraph.MVVM.ViewModel" xmlns:local1="clr-namespace:ScalarGraph.MVVM.Model"
+    d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock Text="Vectors" HorizontalAlignment="Left" FontSize="30" Margin="10, 20, 0, 0"/>
+
+            <ItemsControl ItemsSource="{Binding Vectors}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="10, 0, 0, 0">
+                            <TextBlock Text="(" FontSize="80"/>
+                                <StackPanel>
+                                    <TextBox Margin="10, 40, 10, 10" Width="50" Text="{Binding X}"/>
+                                    <TextBox Margin="10, 0, 10, 0" Width="50" Text="{Binding Y}"/>
+                                </StackPanel>
+                            <TextBlock Text=")" FontSize="80"/>
+                        </StackPanel> 
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button x:Name="Add" Content="Add Vectors" Margin="10, 20, 0, 0" HorizontalAlignment="Left" Click="Add_Click" Command="{Binding AddVectorCommand}"/>
+        </StackPanel>
+        
+        <oxy:PlotView x:Name="grapg" Grid.Row="0" Grid.Column="1" Model="{Binding Model}">
+
+        </oxy:PlotView>
+    </Grid>
+</UserControl>

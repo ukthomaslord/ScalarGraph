@@ -1,0 +1,72 @@
+﻿<Window x:Class="ScalarGraph.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScalarGraph"
+        xmlns:viewModel="clr-namespace:ScalarGraph.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="1080" Width="1920"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <Border Background="White" CornerRadius="20">
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!-- Header -->
+            <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width = "*"/>
+                    <ColumnDefinition Width = "auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                
+                <TextBlock Text="Scalar" 
+                           FontSize="80" 
+                           Margin="50, 0, 50, 0"
+                           HorizontalAlignment="Center"/>
+                
+                <RadioButton Content="Graph" 
+                             FontSize="40" 
+                             Style="{StaticResource ButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding GraphViewCommand}"/>
+                
+                <RadioButton Content="Profile" 
+                             FontSize="40" 
+                             Style="{StaticResource ButtonTheme}"
+                             Command="{Binding ProfileViewCommand}"/>
+                
+                </StackPanel>
+                <!-- Utility Buttons-->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Ellipse Width="15" Height="15" Fill="Green" Margin="15, 0, 15, 30"/>
+                    <Ellipse Width="15" Height="15" Fill="YellowGreen" Margin="15, 0, 15, 30" MouseLeftButtonDown="MinimiseApp"/>
+                    <Ellipse Width="15" Height="15" Fill="Red" Margin="15, 0, 30, 30" MouseLeftButtonDown="CloseApp"/>
+                </StackPanel>
+
+                    
+            </Grid>
+
+            <ContentControl Grid.Row="1" 
+                            Grid.Column="0"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+
+        </Grid>
+
+    </Border>
+</Window>
